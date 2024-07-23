@@ -1,0 +1,27 @@
+{
+  "name": "pulltail-test-task",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons-vue": "^1.11.3",
+    "litepicker": "^2.0.12",
+    "modern-normalize": "^2.0.0",
+    "npm": "^10.8.2",
+    "pinia": "^2.1.7",
+    "uuid": "^10.0.0",
+    "vue": "^3.4.31",
+    "vue-multiselect": "^3.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "sass": "^1.77.8",
+    "vite": "^5.3.4"
+  }
+}
