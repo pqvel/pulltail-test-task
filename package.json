@@ -3,15 +3,18 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://pqvel.github.io/pulltail-test-task",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootstrap-icons-vue": "^1.11.3",
     "clsx": "^2.1.1",
+    "gh-pages": "^6.1.1",
     "litepicker": "^2.0.12",
     "modern-normalize": "^2.0.0",
     "npm": "^10.8.2",
