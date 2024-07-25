@@ -1,24 +1,39 @@
 <script setup>
 import Litepicker from "litepicker";
-import { onMounted, ref } from "vue";
-
-// const dateRangeInput = ref(null);
+import { onMounted } from "vue";
+import { BIconCalendarFill } from "bootstrap-icons-vue";
 
 onMounted(() => {
-  const picker = new Litepicker({
+  new Litepicker({
     element: document.getElementById("datepicker"),
     singleMode: false,
-    tooltipText: {
-      one: "night",
-      other: "nights",
-    },
-    tooltipNumber: (totalDays) => {
-      return totalDays - 1;
-    },
+    format: "DD/MM/YYYY",
   });
 });
 </script>
 
 <template>
-  <input type="text" id="datepicker" />
+  <div class="date-range form-floating w-100 me-2">
+    <input
+      id="datepicker"
+      class="form-control w-100 m-0"
+      style="width: 300px; margin: 15px 0"
+      placeholder="Date Range*"
+    />
+    <label for="numberInput"> Date Range* </label>
+    <BIconCalendarFill class="date-range-icon text-secondary" />
+  </div>
 </template>
+
+<style scoped lang="scss">
+.date-range {
+  position: relative;
+
+  &-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+</style>

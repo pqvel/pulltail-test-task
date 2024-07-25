@@ -20,7 +20,7 @@ import {
 } from "../../core/constants";
 import { loadsSortingReducer } from "../../core/sotring/loadsSorting";
 import { formatRangeDate } from "../../core/utils/format/formatTime";
-import LoadItemInfo from "./LoadItemInfo.vue";
+import LoadItemInfo from "./LoadItem.vue";
 
 const loads = ref(originalLoads);
 

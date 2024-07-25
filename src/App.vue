@@ -19,7 +19,9 @@ onMounted(() => {
 </script>
 <template>
   <Container>
-    <Filters />
+    <Section>
+      <Filters />
+    </Section>
     <Section>
       <Loads />
     </Section>

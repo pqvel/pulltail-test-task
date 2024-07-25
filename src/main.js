@@ -1,9 +1,11 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import "bootstrap/dist/css/bootstrap.css";
-import bootstrap from "bootstrap/dist/js/bootstrap.js";
-import "./style.scss";
 import App from "./App.vue";
+
+import bootstrap from "bootstrap/dist/js/bootstrap.js";
+
+import "bootstrap/dist/css/bootstrap.css";
+import "./style.scss";
 
 const pinia = createPinia();
 const app = createApp(App);

@@ -7,6 +7,15 @@ defineProps({
 });
 
 const autocompleteInput = ref(null);
+const inputValue = ref("");
+
+const validateInput = (e) => {
+  const regex = /^[a-zA-Z]*$/;
+
+  if (!regex.test(e.target.value)) {
+    inputValue.value = e.target.value.replace(/[^a-zA-Z]/g, "");
+  }
+};
 
 onMounted(() => {
   if (window.google) {
@@ -19,11 +28,6 @@ onMounted(() => {
     );
   }
 });
-
-const handleInput = (event) => {
-  console.log("Ввод:", event.target.value);
-  // Здесь можно добавить дополнительную обработку ввода
-};
 </script>
 
 <template>
@@ -35,9 +39,11 @@ const handleInput = (event) => {
         id="floatingInput"
         placeholder="Your Name"
         ref="autocompleteInput"
-        @input="handleInput"
+        pattern="[A-Za-z]*"
+        v-model="inputValue"
+        @input="validateInput"
       />
-      <label for="floatingInput" :class="{ active: isFocused || inputValue }">
+      <label for="floatingInput">
         {{ label }}
       </label>
     </div>
