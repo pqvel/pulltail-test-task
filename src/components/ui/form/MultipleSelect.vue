@@ -1,49 +1,62 @@
 <script setup>
-import { ref } from "vue";
-import Multiselect from "vue-multiselect";
-import { v4 as uuid } from "uuid";
+import Multiselect from "@vueform/multiselect";
+import "@vueform/multiselect/themes/default.css";
+import { reactive } from "vue";
 import { truckTypes } from "../../../core/data";
 
-const value = ref();
-const options = ref(truckTypes);
-
-function addTag(newTag) {
-  const tag = {
-    name: newTag,
-    code: newTag.substring(0, 2) + Math.floor(Math.random() * 10000000),
-  };
-  this.options.push(tag);
-  this.value.push(tag);
-}
-
-const inputId = "multipleSelect" + uuid();
-const autocompleteInput = ref(null);
-defineProps({
-  label: {
-    type: String,
-    required: true,
-  },
-});
+const selectedOptions = reactive([]);
+const options = reactive(truckTypes);
 </script>
 
 <template>
   <div>
-    <label class="typo__label">Tagging</label>
     <Multiselect
-      v-model="value"
-      tag-placeholder="Add this as new tag"
-      placeholder="Search or add a tag"
-      label="name"
-      track-by="code"
+      v-model="selectedOptions"
       :options="options"
       :multiple="true"
-      :taggable="true"
-      @tag="addTag"
+      :track-by="'code'"
+      :label="'name'"
+      placeholder="Select options"
     >
+      <template #tag="{ option, remove }">
+        <span class="custom-tag">
+          {{ option.name }}
+          <button type="button" @click="remove(option)">✕</button>
+        </span>
+      </template>
+      <template #option="{ option }">
+        <div class="custom-option">
+          <span>{{ option.name }} ({{ option.code }})</span>
+        </div>
+      </template>
     </Multiselect>
   </div>
 </template>
 
-<style lang="scss">
-@import url("vue-multiselect/dist/vue-multiselect.css");
+<style>
+.custom-tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 2px;
+}
+
+.custom-tag button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.custom-option {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.custom-option:hover {
+  background-color: #f0f0f0;
+}
 </style>

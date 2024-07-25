@@ -11,6 +11,7 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "@vueform/multiselect": "^2.6.8",
     "bootstrap": "^5.3.3",
     "bootstrap-icons-vue": "^1.11.3",
     "clsx": "^2.1.1",
@@ -23,7 +24,6 @@
     "v-mask": "^2.3.0",
     "vee-validate": "^4.13.2",
     "vue": "^3.4.31",
-    "vue-multiselect": "^3.0.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {
