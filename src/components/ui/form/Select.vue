@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, defineProps, defineEmits } from "vue";
+import { useClickOutside } from "../../../core/composables/useClickOutside";
 
 const props = defineProps({
   options: {
@@ -18,7 +19,9 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-const dropdownOpen = ref(false);
+const dropdownRef = ref(null);
+const { dropdownOpen } = useClickOutside(dropdownRef);
+
 const toggleDropdown = () => {
   dropdownOpen.value = !dropdownOpen.value;
 };
@@ -30,8 +33,9 @@ const selectOption = (option) => {
 
 const selectedOption = computed(() => props.modelValue);
 </script>
+
 <template>
-  <div class="form-floating dropdown">
+  <div class="form-floating dropdown" ref="dropdownRef">
     <input
       type="text"
       class="form-control"

@@ -1,8 +1,15 @@
 <script setup>
 import { BIconX } from "bootstrap-icons-vue";
-import { ref, computed, defineProps, defineEmits } from "vue";
+import {
+  ref,
+  computed,
+  defineProps,
+  defineEmits,
+  onMounted,
+  onUnmounted,
+} from "vue";
+import { useClickOutside } from "../../../core/composables/useClickOutside";
 
-// Props
 const props = defineProps({
   options: {
     type: Array,
@@ -46,6 +53,22 @@ const removeOption = (option) => {
 const selectedOptions = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
+});
+
+// Click outside handler
+const handleClickOutside = (event) => {
+  const dropdownElement = document.querySelector(".multiple-select");
+  if (!dropdownElement.contains(event.target)) {
+    dropdownOpen.value = false;
+  }
+};
+
+onMounted(() => {
+  document.addEventListener("click", handleClickOutside);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("click", handleClickOutside);
 });
 </script>
 
@@ -158,7 +181,7 @@ const selectedOptions = computed({
 
     &::-webkit-scrollbar {
       width: 8px;
-      height: 8px; /* Добавляем высоту для горизонтального скролла */
+      height: 8px;
       background-color: #ffffff;
     }
 
@@ -166,7 +189,7 @@ const selectedOptions = computed({
       background-color: #eeeeee;
       border-radius: 8px;
       width: 8px;
-      height: 8px; /* Добавляем высоту для горизонтального скролла */
+      height: 8px;
     }
   }
 

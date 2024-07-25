@@ -51,20 +51,27 @@ const submitForm = () => {
 </script>
 
 <template>
-  <div class="row align-items-center g-2">
-    <div class="col-12 col-lg-6">
-      <LocationInput v-model="originValue" label="Origin" placeholder="DH-O" />
+  <div class="row align-items-start g-2">
+    <div class="row align-items-center g-2">
+      <div class="col-12 col-lg-6">
+        <LocationInput
+          v-model="originValue"
+          label="Origin"
+          placeholder="DH-O"
+        />
+      </div>
+      <div class="col-1 text-center d-none d-xl-block">
+        <BIconArrowDownUp class="location-icon" width="30" height="30" />
+      </div>
+      <div class="col-12 col-lg-6 col-xl-5">
+        <LocationInput
+          v-model="destinationValue"
+          label="Destination"
+          placeholder="DH-D"
+        />
+      </div>
     </div>
-    <div class="col-1 text-center d-none d-xl-block">
-      <BIconArrowDownUp class="location-icon" width="30" height="30" />
-    </div>
-    <div class="col-12 col-lg-6 col-xl-5">
-      <LocationInput
-        v-model="destinationValue"
-        label="Destination"
-        placeholder="DH-D"
-      />
-    </div>
+
     <div class="col-lg-6 col-xl-3">
       <MultipleSelect :options="multiSelectOptions" v-model="selectedOptions" />
     </div>

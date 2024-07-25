@@ -2,13 +2,12 @@
 import { ref, computed, reactive } from "vue";
 import { storeToRefs } from "pinia";
 import { BIconInfoCircleFill } from "bootstrap-icons-vue";
-import { Table, TableRow, TableTitle } from "../ui/table";
-import TableSortBtn from "../ui/table/TableSortBtn.vue";
+import { Table, TableRow, TableTitle, TableSortBtn } from "../ui/table";
+import LoadItem from "./LoadItem.vue";
 import { loads as originalLoads } from "../../core/data";
 import { sortingOrders, sortings } from "../../core/constants";
 import { loadsFilterReducer } from "../../core/filters/loadsFIlters";
 import { loadsSortingReducer } from "../../core/sotring/loadsSorting";
-import LoadItem from "./LoadItem.vue";
 import { useStore } from "../../core/store/store";
 
 const store = useStore();
