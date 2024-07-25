@@ -8,12 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@vueform/multiselect':
-        specifier: ^2.6.8
-        version: 2.6.8
-      '@vuepic/vue-datepicker':
-        specifier: ^9.0.1
-        version: 9.0.1(vue@3.4.33)
       bootstrap:
         specifier: ^5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
@@ -41,21 +35,9 @@ importers:
       uuid:
         specifier: ^10.0.0
         version: 10.0.0
-      v-mask:
-        specifier: ^2.3.0
-        version: 2.3.0
-      vee-validate:
-        specifier: ^4.13.2
-        version: 4.13.2(vue@3.4.33)
       vue:
         specifier: ^3.4.31
         version: 3.4.33
-      vue3-daterange-picker:
-        specifier: ^1.0.1
-        version: 1.0.1
-      yup:
-        specifier: ^1.4.0
-        version: 1.4.0
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^5.0.5
@@ -352,15 +334,6 @@ packages:
   '@vue/shared@3.4.33':
     resolution: {integrity: sha512-aoRY0jQk3A/cuvdkodTrM4NMfxco8n55eG4H7ML/CRy7OryHfiqvug4xrCBBMbbN+dvXAetDDwZW9DXWWjBntA==}
 
-  '@vueform/multiselect@2.6.8':
-    resolution: {integrity: sha512-vu1bkFkViuLbrtSfyWgw11ecNPK7mlBDFe5X9WdsZj3gri3PiZ3OvlfJ920Ebysf7rgiN/+mHJDY2/Y1ITnGEg==}
-
-  '@vuepic/vue-datepicker@9.0.1':
-    resolution: {integrity: sha512-5sSdwib5cY8cE4Y7SCh+Zemfp+U/m6BDcgaPwd5Vmdv5LAASyV0wugn9sTb6NWX0sIQEdrGDl/RmD9EjcIke3A==}
-    engines: {node: '>=18.12.0'}
-    peerDependencies:
-      vue: '>=3.2.0'
-
   anymatch@3.1.3:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
@@ -418,9 +391,6 @@ packages:
 
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
-
-  date-fns@3.6.0:
-    resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
 
   email-addresses@5.0.0:
     resolution: {integrity: sha512-4OIPYlA6JXqtVn8zpHpGiI7vE6EQOAg16aGnDMIAlZVinnoZ8208tW1hAbjWydgN/4PLTT9q+O1K6AH/vALJGw==}
@@ -692,9 +662,6 @@ packages:
     resolution: {integrity: sha512-0vzE+lAiG7hZl1/9I8yzKLx3aR9Xbof3fBHKunvMfOCYAtMhrsnccJY2iTURb9EZd5+pLuiNV9/c/GZJOHsgIw==}
     engines: {node: ^10 || ^12 || >=14}
 
-  property-expr@2.0.6:
-    resolution: {integrity: sha512-SVtmxhRE/CGkn3eZY1T6pC8Nln6Fr/lu1mKSgRud0eC73whjGfoAogbn78LkD8aFL0zz3bAFerKSnOl7NlErBA==}
-
   readdirp@3.6.0:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
@@ -721,9 +688,6 @@ packages:
     resolution: {integrity: sha512-k55yxKHwaXnpYGsOzg4Vl8+tDrWylxDEpknGjhTiZB8dFRU5rTo9CAzeycivxV3s+zlTKwrs6WxMxR95n26kwg==}
     engines: {node: '>=0.10.0'}
 
-  tiny-case@1.0.3:
-    resolution: {integrity: sha512-Eet/eeMhkO6TX8mnUteS9zgPbUMQa4I6Kkp5ORiBD5476/m+PIRiumP5tmh5ioJpH7k51Kehawy2UDfsnxxY8Q==}
-
   to-fast-properties@2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
     engines: {node: '>=4'}
@@ -732,20 +696,9 @@ packages:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
 
-  toposort@2.0.2:
-    resolution: {integrity: sha512-0a5EOkAUp8D4moMi2W8ZF8jcga7BgZd91O/yabJCFY8az+XSzeGyTKs0Aoo897iV1Nj6guFq8orWDS96z91oGg==}
-
   trim-repeated@1.0.0:
     resolution: {integrity: sha512-pkonvlKk8/ZuR0D5tLW8ljt5I8kmxp2XKymhepUeOdCEfKpZaktSArkLHZt76OB1ZvO9bssUsDty4SWhLvZpLg==}
     engines: {node: '>=0.10.0'}
-
-  type-fest@2.19.0:
-    resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
-    engines: {node: '>=12.20'}
-
-  type-fest@4.23.0:
-    resolution: {integrity: sha512-ZiBujro2ohr5+Z/hZWHESLz3g08BBdrdLMieYFULJO+tWc437sn8kQsWLJoZErY8alNhxre9K4p3GURAG11n+w==}
-    engines: {node: '>=16'}
 
   universalify@2.0.1:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
@@ -754,14 +707,6 @@ packages:
   uuid@10.0.0:
     resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
     hasBin: true
-
-  v-mask@2.3.0:
-    resolution: {integrity: sha512-ap7pTtCTvj25CqX4VYXqudCBd0+XvYyhiiLbzWQQR7AMQosJ2+DPu0a94P9stk0EGmGcmYxJaPkFkfjD8hquWQ==}
-
-  vee-validate@4.13.2:
-    resolution: {integrity: sha512-HlpR/6MJ92TW9f135umMZKUqdd/tFQTxLNSf2ImbU4Y/MlLVAUpF1l64VdjTOhbClAqPjCb5p/SqHDxLpUHXrw==}
-    peerDependencies:
-      vue: ^3.4.26
 
   vite@5.3.4:
     resolution: {integrity: sha512-Cw+7zL3ZG9/NZBB8C+8QbQZmR54GwqIz+WMI4b3JgdYJvX+ny9AjJXqkGQlDXSXRP9rP0B4tbciRMOVEKulVOA==}
@@ -802,9 +747,6 @@ packages:
       '@vue/composition-api':
         optional: true
 
-  vue3-daterange-picker@1.0.1:
-    resolution: {integrity: sha512-CnLfhgubeehqF3QqrnTJVCt7mx8XxTSKbY7yVMQT0kyZ2D90qrIqJ7MNf6uGAC7utE3DbBCKq6PHTk6371cDHQ==}
-
   vue@3.4.33:
     resolution: {integrity: sha512-VdMCWQOummbhctl4QFMcW6eNtXHsFyDlX60O/tsSQuCcuDOnJ1qPOhhVla65Niece7xq/P2zyZReIO5mP+LGTQ==}
     peerDependencies:
@@ -815,9 +757,6 @@ packages:
 
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
-
-  yup@1.4.0:
-    resolution: {integrity: sha512-wPbgkJRCqIf+OHyiTBQoJiP5PFuAXaWiJK6AmYkzQAh5/c2K9hzSApBZG5wV9KoKSePF7sAxmNSvh/13YHkFDg==}
 
 snapshots:
 
@@ -1019,13 +958,6 @@ snapshots:
 
   '@vue/shared@3.4.33': {}
 
-  '@vueform/multiselect@2.6.8': {}
-
-  '@vuepic/vue-datepicker@9.0.1(vue@3.4.33)':
-    dependencies:
-      date-fns: 3.6.0
-      vue: 3.4.33
-
   anymatch@3.1.3:
     dependencies:
       normalize-path: 3.0.0
@@ -1079,8 +1011,6 @@ snapshots:
   concat-map@0.0.1: {}
 
   csstype@3.1.3: {}
-
-  date-fns@3.6.0: {}
 
   email-addresses@5.0.0: {}
 
@@ -1284,8 +1214,6 @@ snapshots:
       picocolors: 1.0.1
       source-map-js: 1.2.0
 
-  property-expr@2.0.6: {}
-
   readdirp@3.6.0:
     dependencies:
       picomatch: 2.3.1
@@ -1326,35 +1254,19 @@ snapshots:
     dependencies:
       escape-string-regexp: 1.0.5
 
-  tiny-case@1.0.3: {}
-
   to-fast-properties@2.0.0: {}
 
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
 
-  toposort@2.0.2: {}
-
   trim-repeated@1.0.0:
     dependencies:
       escape-string-regexp: 1.0.5
 
-  type-fest@2.19.0: {}
-
-  type-fest@4.23.0: {}
-
   universalify@2.0.1: {}
 
   uuid@10.0.0: {}
-
-  v-mask@2.3.0: {}
-
-  vee-validate@4.13.2(vue@3.4.33):
-    dependencies:
-      '@vue/devtools-api': 6.6.3
-      type-fest: 4.23.0
-      vue: 3.4.33
 
   vite@5.3.4(sass@1.77.8):
     dependencies:
@@ -1369,8 +1281,6 @@ snapshots:
     dependencies:
       vue: 3.4.33
 
-  vue3-daterange-picker@1.0.1: {}
-
   vue@3.4.33:
     dependencies:
       '@vue/compiler-dom': 3.4.33
@@ -1380,10 +1290,3 @@ snapshots:
       '@vue/shared': 3.4.33
 
   wrappy@1.0.2: {}
-
-  yup@1.4.0:
-    dependencies:
-      property-expr: 2.0.6
-      tiny-case: 1.0.3
-      toposort: 2.0.2
-      type-fest: 2.19.0
