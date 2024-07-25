@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, defineProps } from "vue";
 
 defineProps({
   label: String,
@@ -19,13 +19,10 @@ const validateInput = (e) => {
 
 onMounted(() => {
   if (window.google) {
-    const autocomplete = new window.google.maps.places.Autocomplete(
-      autocompleteInput.value,
-      {
-        types: ["(cities)"],
-        componentRestrictions: { country: "us" }, // Ограничение на конкретную страну, например, Россия
-      }
-    );
+    new window.google.maps.places.Autocomplete(autocompleteInput.value, {
+      types: ["(cities)"],
+      componentRestrictions: { country: "us" },
+    });
   }
 });
 </script>

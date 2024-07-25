@@ -5,6 +5,11 @@ import MultipleSelect from "./ui/form/MultipleSelect.vue";
 import DateRange from "./ui/form/DateRange.vue";
 import NumberInput from "./ui/form/NumberInput.vue";
 import SearchBtn from "./ui/form/SearchBtn.vue";
+import Select from "./ui/form/Select.vue";
+import { ref } from "vue";
+
+const options = ref(["Full & Partial", "Full", "Partial"]);
+const selectedOption = ref("Full & Partial");
 </script>
 
 <template>
@@ -19,12 +24,11 @@ import SearchBtn from "./ui/form/SearchBtn.vue";
       <div class="col-12 col-lg-6 col-xl-5">
         <LocationInput label="Destination" placeholder="DH-D" />
       </div>
-      <!--  -->
       <div class="col-lg-6 col-xl-3">
         <MultipleSelect label="Equipment Type" />
       </div>
       <div class="col-lg-6 col-xl-2">
-        <MultipleSelect label="Equipment Type" />
+        <Select label="Load Type" :options="options" v-model="selectedOption" />
       </div>
       <div class="col-lg-6 col-xl-1">
         <NumberInput label="Length ft" />
