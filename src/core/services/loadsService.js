@@ -1,6 +1,6 @@
 import { loads, truckTypes } from "../data";
 
-export const loadsService = () => {
+export const useLoadsService = () => {
   const getLoads = () => {
     return loads;
   };

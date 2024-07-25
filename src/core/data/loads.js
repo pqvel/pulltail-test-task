@@ -60,18 +60,34 @@ class RandomDataService {
       contact: this.generateRandomString(5),
     };
   }
+
+  static generateRandomOfValues(values) {
+    return values[Math.floor(Math.random() * values.length)];
+  }
 }
 
 class LoadGenerator {
   static generateLoad() {
     const dateCreate = Math.floor(Date.now() / 1000);
+
     return {
+      miles: RandomDataService.generateRandomNumber(300, 10000),
+      age: RandomDataService.generateRandomNumber(10, 100),
       datePickUpStart: RandomDataService.generateRandomDate(),
       voidedReason: null,
-      length: RandomDataService.generateRandomNumber(40, 53),
-      equipment: RandomDataService.generateRandomNumber(1, 10),
-      weight: RandomDataService.generateRandomNumber(5000, 30000),
+      length: RandomDataService.generateRandomNumber(30, 60),
+      equipment: RandomDataService.generateRandomNumber(1, 70),
+      weight: RandomDataService.generateRandomNumber(100, 150),
       datePickUpEnd: RandomDataService.generateRandomDate(),
+      company: {
+        name: "Transloop Logistic Lic",
+        cs: 93,
+        dtp: 19,
+        contact: {
+          email: "jason.saks@transloop.com",
+        },
+      },
+      comments: RandomDataService.generateRandomString(40),
       dateCreate: {
         _seconds: dateCreate,
         _nanoseconds: Math.floor(Math.random() * 1000000000),
@@ -85,7 +101,7 @@ class LoadGenerator {
           1000,
           9999
         ).toString(),
-        city: RandomDataService.generateRandomString(8),
+        city: "French Camp",
         street: `${RandomDataService.generateRandomNumber(
           1000,
           9999
@@ -93,8 +109,9 @@ class LoadGenerator {
         unitNumber: null,
         location: RandomDataService.generateRandomLocation(),
         state: "CA",
+        dho: RandomDataService.generateRandomNumber(10, 100),
       },
-      fullPartial: RandomDataService.generateRandomNumber(1, 3),
+      fullPartial: RandomDataService.generateRandomNumber(1, 2),
       dateDropOff: RandomDataService.generateRandomDate(),
       puContact: RandomDataService.generateRandomContact(),
       doContact: RandomDataService.generateRandomContact(),
@@ -106,7 +123,7 @@ class LoadGenerator {
           1000,
           9999
         ).toString(),
-        city: RandomDataService.generateRandomString(8),
+        city: "Hudson",
         street: `${RandomDataService.generateRandomNumber(
           1000,
           9999
@@ -114,9 +131,10 @@ class LoadGenerator {
         unitNumber: null,
         location: RandomDataService.generateRandomLocation(),
         state: "TX",
+        dho: RandomDataService.generateRandomNumber(10, 100),
       },
       desc: RandomDataService.generateRandomString(50),
-      commodity: RandomDataService.generateRandomString(30),
+      commodity: null,
       id: RandomDataService.generateRandomString(20),
       amount: parseFloat((Math.random() * 1000).toFixed(2)),
       route: {
