@@ -1,13 +1,11 @@
 <script setup>
-import { v4 as uuid } from "uuid";
 import { ref } from "vue";
 import Multiselect from "vue-multiselect";
-const value = ref({ name: "Javascript", code: "js" });
-const options = ref([
-  { name: "Vue.js", code: "vu" },
-  { name: "Javascript", code: "js" },
-  { name: "Open Source", code: "os" },
-]);
+import { v4 as uuid } from "uuid";
+import { truckTypes } from "../../../core/data";
+
+const value = ref();
+const options = ref(truckTypes);
 
 function addTag(newTag) {
   const tag = {

@@ -9,7 +9,6 @@ import SearchBtn from "./ui/form/SearchBtn.vue";
 
 <template>
   <form @submit.prevent="submitForm">
-    <!-- 1 -->
     <div class="row align-items-center g-2">
       <div class="col-12 col-lg-6">
         <LocationInput label="Origin" placeholder="DH-O" />
@@ -48,7 +47,7 @@ import SearchBtn from "./ui/form/SearchBtn.vue";
   </form>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .location-icon {
   transform: rotate(90deg);
   fill: #2f3d69;
