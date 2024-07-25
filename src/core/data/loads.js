@@ -101,7 +101,12 @@ class LoadGenerator {
           1000,
           9999
         ).toString(),
-        city: "French Camp",
+        city: RandomDataService.generateRandomOfValues([
+          "Los Angeles",
+          "Hudson",
+          "Liberty",
+          "Kingston",
+        ]),
         street: `${RandomDataService.generateRandomNumber(
           1000,
           9999
@@ -123,7 +128,12 @@ class LoadGenerator {
           1000,
           9999
         ).toString(),
-        city: "Hudson",
+        city: RandomDataService.generateRandomOfValues([
+          "Los Angeles",
+          "Hudson",
+          "Liberty",
+          "Kingston",
+        ]),
         street: `${RandomDataService.generateRandomNumber(
           1000,
           9999

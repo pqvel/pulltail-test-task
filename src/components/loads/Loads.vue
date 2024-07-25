@@ -1,13 +1,18 @@
 <script setup>
 import { ref, computed, reactive } from "vue";
+import { storeToRefs } from "pinia";
 import { BIconInfoCircleFill } from "bootstrap-icons-vue";
 import { Table, TableRow, TableTitle } from "../ui/table";
 import TableSortBtn from "../ui/table/TableSortBtn.vue";
 import { loads as originalLoads } from "../../core/data";
 import { sortingOrders, sortings } from "../../core/constants";
+import { loadsFilterReducer } from "../../core/filters/loadsFIlters";
 import { loadsSortingReducer } from "../../core/sotring/loadsSorting";
 import LoadItem from "./LoadItem.vue";
+import { useStore } from "../../core/store/store";
 
+const store = useStore();
+const { filters } = storeToRefs(store);
 const loads = ref(originalLoads);
 
 const sorting = reactive({
@@ -17,8 +22,11 @@ const sorting = reactive({
 
 const currentLoadIndex = ref(null);
 
-const sortedLoads = computed(() => {
-  return loadsSortingReducer(loads.value, sorting);
+const filteredAndSortedLoads = computed(() => {
+  const filteredLoads = loadsFilterReducer(loads.value, filters.value);
+  const sortedLoads = loadsSortingReducer(filteredLoads, sorting);
+
+  return sortedLoads;
 });
 
 const changeSorting = (sortingName) => {
@@ -86,7 +94,7 @@ const setCurrentLoadIndex = (index) => {
     </template>
     <template v-slot:body>
       <LoadItem
-        v-for="(load, i) in sortedLoads"
+        v-for="(load, i) in filteredAndSortedLoads"
         :key="i"
         :load="load"
         :active="i === currentLoadIndex"

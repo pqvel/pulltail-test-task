@@ -1,29 +1,43 @@
 <script setup>
-import { onMounted, ref, defineProps } from "vue";
+import { ref, defineEmits, defineProps, onMounted } from "vue";
 
-defineProps({
+const props = defineProps({
   label: String,
+  modelValue: String,
   placeholder: String,
 });
 
+const emit = defineEmits(["update:modelValue"]);
+
 const autocompleteInput = ref(null);
-const inputValue = ref("");
+const inputValue = ref(props.modelValue || "");
 
-const validateInput = (e) => {
-  const regex = /^[a-zA-Z]*$/;
+const initializeAutocomplete = () => {
+  if (window.google) {
+    const autocomplete = new window.google.maps.places.Autocomplete(
+      autocompleteInput.value,
+      {
+        types: ["(cities)"],
+        componentRestrictions: { country: "us" }, // Ограничение на США
+      }
+    );
 
-  if (!regex.test(e.target.value)) {
-    inputValue.value = e.target.value.replace(/[^a-zA-Z]/g, "");
+    autocomplete.addListener("place_changed", () => {
+      const place = autocomplete.getPlace();
+      if (place && place.formatted_address) {
+        inputValue.value = place.formatted_address;
+        emit("update:modelValue", place.name);
+      }
+    });
   }
 };
 
+const handleChange = (e) => {
+  emit("update:modelValue", e.target.value);
+};
+
 onMounted(() => {
-  if (window.google) {
-    new window.google.maps.places.Autocomplete(autocompleteInput.value, {
-      types: ["(cities)"],
-      componentRestrictions: { country: "us" },
-    });
-  }
+  initializeAutocomplete();
 });
 </script>
 
@@ -36,9 +50,8 @@ onMounted(() => {
         id="floatingInput"
         placeholder="Your Name"
         ref="autocompleteInput"
-        pattern="[A-Za-z]*"
         v-model="inputValue"
-        @input="validateInput"
+        @input="handleChange"
       />
       <label for="floatingInput">
         {{ label }}
@@ -53,5 +66,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style lang="scss"></style>

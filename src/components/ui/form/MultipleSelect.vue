@@ -1,62 +1,186 @@
 <script setup>
-import Multiselect from "@vueform/multiselect";
-import "@vueform/multiselect/themes/default.css";
-import { reactive } from "vue";
-import { truckTypes } from "../../../core/data";
+import { BIconX } from "bootstrap-icons-vue";
+import { ref, computed, defineProps, defineEmits } from "vue";
 
-const selectedOptions = reactive([]);
-const options = reactive(truckTypes);
+// Props
+const props = defineProps({
+  options: {
+    type: Array,
+    required: true,
+  },
+  modelValue: {
+    type: Array,
+    default: () => [],
+  },
+});
+
+const emit = defineEmits(["update:modelValue"]);
+
+// Local state
+const dropdownOpen = ref(false);
+
+// Methods
+const toggleDropdown = () => {
+  dropdownOpen.value = !dropdownOpen.value;
+};
+
+const toggleOption = (option) => {
+  const index = selectedOptions.value.indexOf(option);
+  if (index === -1) {
+    selectedOptions.value.push(option);
+  } else {
+    selectedOptions.value.splice(index, 1);
+  }
+  emit("update:modelValue", selectedOptions.value);
+};
+
+const removeOption = (option) => {
+  const index = selectedOptions.value.indexOf(option);
+  if (index !== -1) {
+    selectedOptions.value.splice(index, 1);
+    emit("update:modelValue", selectedOptions.value);
+  }
+};
+
+// Computed property for selected options
+const selectedOptions = computed({
+  get: () => props.modelValue,
+  set: (value) => emit("update:modelValue", value),
+});
 </script>
 
 <template>
-  <div>
-    <Multiselect
-      v-model="selectedOptions"
-      :options="options"
-      :multiple="true"
-      :track-by="'code'"
-      :label="'name'"
-      placeholder="Select options"
-    >
-      <template #tag="{ option, remove }">
-        <span class="custom-tag">
+  <div class="multiple-select">
+    <div class="form-floating">
+      <div
+        type="text"
+        class="multiple-select-input form-control"
+        @click="toggleDropdown"
+        placeholder="Equipment"
+        readonly
+      >
+        <div
+          v-for="(option, index) in selectedOptions"
+          :key="index"
+          class="multiple-select-tag py-2 px-2 badge me-2 mb-2 text-dark fw-normal d-inline-flex align-items-center"
+        >
           {{ option.name }}
-          <button type="button" @click="remove(option)">✕</button>
-        </span>
-      </template>
-      <template #option="{ option }">
-        <div class="custom-option">
-          <span>{{ option.name }} ({{ option.code }})</span>
+          <button
+            type="button"
+            class="multiple-select-delete d-flex align-items-center justify-content-center"
+            aria-label="Close"
+            @click="removeOption(option)"
+          >
+            <BIconX width="12" height="12" />
+          </button>
         </div>
-      </template>
-    </Multiselect>
+      </div>
+      <label class="multiple-select-label" for="customMultiSelect">
+        Equipment Type
+      </label>
+    </div>
+
+    <div
+      class="dropdown-menu shadow-lg show"
+      :class="{ 'd-none': !dropdownOpen }"
+    >
+      <div class="text-purple py-2 px-3 fw-bolder fz-14px">Test group 1</div>
+      <button
+        class="dropdown-item d-flex items-center justify-content-between px-4 py-2"
+        v-for="option in options"
+        :key="option.code"
+        @click="toggleOption(option)"
+      >
+        <div>{{ option.name }}</div>
+        <div class="text-muted">{{ option.code }}</div>
+      </button>
+    </div>
   </div>
 </template>
 
-<style>
-.custom-tag {
-  display: inline-flex;
-  align-items: center;
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  padding: 5px;
-  margin: 2px;
-}
+<style lang="scss" scoped>
+.multiple-select {
+  position: relative;
 
-.custom-tag button {
-  background: none;
-  border: none;
-  font-size: 14px;
-  margin-left: 5px;
-  cursor: pointer;
-}
+  &-input {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto !important;
+  }
 
-.custom-option {
-  padding: 5px 10px;
-  cursor: pointer;
-}
+  &-tag {
+    background-color: #dddddd;
+    flex-wrap: nowrap;
+  }
 
-.custom-option:hover {
-  background-color: #f0f0f0;
+  &-delete {
+    background-color: #a7a7a7;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    color: #fff;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    margin-left: 6px;
+  }
+
+  &-label {
+    font-size: 16px !important;
+    top: -1px !important;
+    background-color: #fff !important;
+    opacity: 1 !important;
+    height: 30px;
+    padding: 0px 4px;
+  }
+}
+.dropdown {
+  &-menu {
+    max-height: 300px;
+    max-width: 300px;
+    width: 100%;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px; /* Добавляем высоту для горизонтального скролла */
+      background-color: #ffffff;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #eeeeee;
+      border-radius: 8px;
+      width: 8px;
+      height: 8px; /* Добавляем высоту для горизонтального скролла */
+    }
+  }
+
+  &-item {
+    transition: 0.15s;
+
+    &:active,
+    &:focus,
+    &:hover {
+      background-color: #c4c4c4;
+      color: #000;
+    }
+  }
+}
+.form-floating > .form-control {
+  padding: 0.75rem 0.75rem 0.25rem;
+}
+.form-floating > label {
+  top: -0.25rem;
+  left: 0.75rem;
+  padding: 0 0.25rem;
+  background: white;
+  transition: all 0.1s ease-in-out;
+  pointer-events: none;
+}
+.form-floating > .form-control:not(:placeholder-shown) + label {
+  top: -1rem;
+  font-size: 0.75rem;
+  opacity: 0.65;
 }
 </style>

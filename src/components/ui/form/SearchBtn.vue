@@ -1,5 +1,12 @@
 <script setup>
+import { defineEmits } from "vue";
 import { BIconSearch } from "bootstrap-icons-vue";
+
+const emit = defineEmits("handleSearch");
+
+const handleClick = () => {
+  emit("handleSearch");
+};
 </script>
 
 <template>
@@ -7,6 +14,7 @@ import { BIconSearch } from "bootstrap-icons-vue";
     <button
       type="button"
       class="search-btn form-control btn btn-primary btn-lg text-sm py-2 w-100"
+      @click="handleClick"
     >
       <BIconSearch width="20" height="20" />
       Search
