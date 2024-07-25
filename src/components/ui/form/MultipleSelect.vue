@@ -129,10 +129,24 @@ const selectedOptions = computed({
   &-label {
     font-size: 16px !important;
     top: -1px !important;
-    background-color: #fff !important;
+    background-color: transparent !important;
     opacity: 1 !important;
     height: 30px;
     padding: 0px 4px;
+    z-index: 1;
+
+    &::before {
+      content: "";
+      display: flex;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 16px;
+      background-color: #fff;
+      z-index: -1;
+    }
   }
 }
 .dropdown {

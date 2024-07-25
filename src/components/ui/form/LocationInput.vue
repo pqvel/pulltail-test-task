@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineEmits, defineProps, onMounted } from "vue";
+import { ref, defineEmits, defineProps, onMounted, watch } from "vue";
 
 const props = defineProps({
   label: String,
@@ -12,6 +12,7 @@ const emit = defineEmits(["update:modelValue"]);
 const autocompleteInput = ref(null);
 const inputValue = ref(props.modelValue || "");
 
+// Функция для инициализации автозаполнения
 const initializeAutocomplete = () => {
   if (window.google) {
     const autocomplete = new window.google.maps.places.Autocomplete(
@@ -32,9 +33,28 @@ const initializeAutocomplete = () => {
   }
 };
 
-const handleChange = (e) => {
-  emit("update:modelValue", e.target.value);
+// Функция для фильтрации ввода
+const filterInput = (value) => {
+  return value.replace(/[^a-zA-Z\s]/g, "");
 };
+
+// Обработчик изменения ввода
+const handleChange = (e) => {
+  const filteredValue = filterInput(e.target.value);
+  inputValue.value = filteredValue;
+  emit("update:modelValue", filteredValue);
+};
+
+// Следим за изменениями modelValue и фильтруем значение при необходимости
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    const filteredValue = filterInput(newValue);
+    if (filteredValue !== newValue) {
+      emit("update:modelValue", filteredValue);
+    }
+  }
+);
 
 onMounted(() => {
   initializeAutocomplete();
@@ -48,7 +68,7 @@ onMounted(() => {
         type="text"
         class="form-control"
         id="floatingInput"
-        placeholder="Your Name"
+        placeholder="location"
         ref="autocompleteInput"
         v-model="inputValue"
         @input="handleChange"
