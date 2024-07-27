@@ -71,7 +71,7 @@ onMounted(() => {
         placeholder="location"
         ref="autocompleteInput"
         v-model="inputValue"
-        @input="handleChange"
+        @change="handleChange"
       />
       <label for="floatingInput">
         {{ label }}
