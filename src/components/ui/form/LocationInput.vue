@@ -11,11 +11,9 @@ const emit = defineEmits(["update:modelValue"]);
 
 const autocompleteInput = ref(null);
 const inputValue = ref(props.modelValue || "");
-let isComposing = ref(false);
 
 const initializeAutocomplete = () => {
   if (window.google) {
-    console.log("inits");
     const autocomplete = new window.google.maps.places.Autocomplete(
       autocompleteInput.value,
       {
@@ -36,24 +34,16 @@ const initializeAutocomplete = () => {
 };
 
 const filterInput = (value) => {
+  alert("validate input");
   return value.replace(/[^a-zA-Z\s]/g, "");
 };
 
 const handleInput = (e) => {
-  if (!isComposing.value) {
-    const filteredValue = filterInput(e.target.value);
-    inputValue.value = filteredValue;
-    emit("update:modelValue", filteredValue);
-  }
-};
-
-const handleCompositionStart = () => {
-  isComposing.value = true;
-};
-
-const handleCompositionEnd = (e) => {
-  isComposing.value = false;
-  handleInput(e); // Применить фильтрацию после завершения ввода
+  const filteredValue = filterInput(e.target.value);
+  inputValue.value = filteredValue;
+  e.target.value = filteredValue;
+  alert("handle input");
+  emit("update:modelValue", filteredValue);
 };
 
 watch(
@@ -84,8 +74,6 @@ onMounted(() => {
         ref="autocompleteInput"
         v-model="inputValue"
         @input="handleInput"
-        @compositionstart="handleCompositionStart"
-        @compositionend="handleCompositionEnd"
       />
       <label for="floatingInput">
         {{ label }}
