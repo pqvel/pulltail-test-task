@@ -40,8 +40,10 @@ const filterInput = (value) => {
 
 const handleChange = (e) => {
   const filteredValue = filterInput(e.target.value);
-  inputValue.value = filteredValue;
-  emit("update:modelValue", filteredValue);
+  if (filteredValue !== inputValue.value) {
+    inputValue.value = filteredValue;
+    emit("update:modelValue", filteredValue);
+  }
 };
 
 watch(
@@ -52,7 +54,8 @@ watch(
       emit("update:modelValue", filteredValue);
     }
     inputValue.value = filteredValue;
-  }
+  },
+  { immediate: true }
 );
 
 onMounted(() => {
