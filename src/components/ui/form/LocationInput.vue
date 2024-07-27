@@ -11,6 +11,7 @@ const emit = defineEmits(["update:modelValue"]);
 
 const autocompleteInput = ref(null);
 const inputValue = ref(props.modelValue || "");
+let isComposing = ref(false);
 
 const initializeAutocomplete = () => {
   if (window.google) {
@@ -38,12 +39,21 @@ const filterInput = (value) => {
   return value.replace(/[^a-zA-Z\s]/g, "");
 };
 
-const handleChange = (e) => {
-  const filteredValue = filterInput(e.target.value);
-  if (filteredValue !== inputValue.value) {
+const handleInput = (e) => {
+  if (!isComposing.value) {
+    const filteredValue = filterInput(e.target.value);
     inputValue.value = filteredValue;
     emit("update:modelValue", filteredValue);
   }
+};
+
+const handleCompositionStart = () => {
+  isComposing.value = true;
+};
+
+const handleCompositionEnd = (e) => {
+  isComposing.value = false;
+  handleInput(e); // Применить фильтрацию после завершения ввода
 };
 
 watch(
@@ -73,7 +83,9 @@ onMounted(() => {
         placeholder="location"
         ref="autocompleteInput"
         v-model="inputValue"
-        @input="handleChange"
+        @input="handleInput"
+        @compositionstart="handleCompositionStart"
+        @compositionend="handleCompositionEnd"
       />
       <label for="floatingInput">
         {{ label }}
