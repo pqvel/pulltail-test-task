@@ -12,9 +12,9 @@ const emit = defineEmits(["update:modelValue"]);
 const autocompleteInput = ref(null);
 const inputValue = ref(props.modelValue || "");
 
-// Функция для инициализации автозаполнения
 const initializeAutocomplete = () => {
   if (window.google) {
+    console.log("inits");
     const autocomplete = new window.google.maps.places.Autocomplete(
       autocompleteInput.value,
       {
@@ -26,26 +26,24 @@ const initializeAutocomplete = () => {
     autocomplete.addListener("place_changed", () => {
       const place = autocomplete.getPlace();
       if (place && place.formatted_address) {
-        inputValue.value = place.formatted_address;
+        const filteredAddress = filterInput(place.formatted_address);
+        inputValue.value = filteredAddress;
         emit("update:modelValue", place.name);
       }
     });
   }
 };
 
-// Функция для фильтрации ввода
 const filterInput = (value) => {
   return value.replace(/[^a-zA-Z\s]/g, "");
 };
 
-// Обработчик изменения ввода
 const handleChange = (e) => {
   const filteredValue = filterInput(e.target.value);
   inputValue.value = filteredValue;
   emit("update:modelValue", filteredValue);
 };
 
-// Следим за изменениями modelValue и фильтруем значение при необходимости
 watch(
   () => props.modelValue,
   (newValue) => {
@@ -53,6 +51,7 @@ watch(
     if (filteredValue !== newValue) {
       emit("update:modelValue", filteredValue);
     }
+    inputValue.value = filteredValue;
   }
 );
 
@@ -71,7 +70,7 @@ onMounted(() => {
         placeholder="location"
         ref="autocompleteInput"
         v-model="inputValue"
-        @change="handleChange"
+        @input="handleChange"
       />
       <label for="floatingInput">
         {{ label }}
