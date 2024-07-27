@@ -34,7 +34,6 @@ const initializeAutocomplete = () => {
 };
 
 const filterInput = (value) => {
-  alert("validate input");
   return value.replace(/[^a-zA-Z\s]/g, "");
 };
 
@@ -42,7 +41,6 @@ const handleInput = (e) => {
   const filteredValue = filterInput(e.target.value);
   inputValue.value = filteredValue;
   e.target.value = filteredValue;
-  alert("handle input");
   emit("update:modelValue", filteredValue);
 };
 
